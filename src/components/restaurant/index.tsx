@@ -66,21 +66,19 @@ const Restaurants = () => {
       <div className="mb-6">
         <h1 className="text-2xl md:text-4xl">Restaurants</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit officia ipsum est, natus quia esse.</p>
-        {paginatedRestaurants.length >= 0 ? (
-          <>
-            <RestaurantFilter
-              isOpen={isOpen}
-              onToggleOpen={toggleOpen}
-              onClearFilter={clearFilter}
-              minPrice={minPrice}
-              onChangeMinPrice={setMinPrice}
-              maxPrice={maxPrice}
-              onChangeMaxPrice={setMaxPrice}
-              categoryId={categoryId}
-              onChangeCategoryId={setCategoryId}
-            />
-            <RestaurantList restaurants={paginatedRestaurants} onLoadMore={onLoadMore} canLoadMore={canLoadMore} />
-          </>
+        <RestaurantFilter
+          isOpen={isOpen}
+          onToggleOpen={toggleOpen}
+          onClearFilter={clearFilter}
+          minPrice={minPrice}
+          onChangeMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          onChangeMaxPrice={setMaxPrice}
+          categoryId={categoryId}
+          onChangeCategoryId={setCategoryId}
+        />
+        {paginatedRestaurants.length > 0 ? (
+          <RestaurantList restaurants={paginatedRestaurants} onLoadMore={onLoadMore} canLoadMore={canLoadMore} />
         ) : fetchError ? (
           <h1 className="text-4xl mx-auto">{fetchError}</h1>
         ) : (
