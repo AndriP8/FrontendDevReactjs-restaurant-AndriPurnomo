@@ -28,13 +28,12 @@ const RestaurantFilter = ({
 }: RestaurantFilterProps) => {
   const [isModalPriceOpen, setIsModalPriceOpen] = React.useState(false);
   const [restaurants, setRestaurants] = React.useState<RestaurantItem[] | null>(null);
-  const [fetchError, setFetchError] = React.useState(null);
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:5000/restaurants")
+      .get("http://localhost:5000/restaurantss")
       .then((res) => setRestaurants(res.data))
-      .catch((err) => setFetchError(err.message));
+      .catch((err) => console.log(err.message));
   }, []);
 
   return (
