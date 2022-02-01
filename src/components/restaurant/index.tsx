@@ -16,8 +16,8 @@ const Restaurants = () => {
   React.useEffect(() => {
     const url =
       categoryId !== ""
-        ? `http://localhost:5000/restaurants?category.id=${categoryId}`
-        : "http://localhost:5000/restaurants";
+        ? `https://sekawan-restaurant.herokuapp.com/restaurants?category.id=${categoryId}`
+        : "https://sekawan-restaurant.herokuapp.com/restaurants";
 
     axios
       .get(url)
@@ -54,6 +54,7 @@ const Restaurants = () => {
     setIsOpen(false);
     setMinPrice(0);
     setMaxPrice(0);
+    setCategoryId("");
   };
 
   const onLoadMore = () => {

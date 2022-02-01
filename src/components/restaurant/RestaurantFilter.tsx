@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { AiOutlineUp } from "react-icons/ai";
-import { RestaurantItem } from "type/restaurant";
+import { Category } from "type/restaurant";
 
 interface RestaurantFilterProps {
   isOpen: boolean;
@@ -27,13 +27,14 @@ const RestaurantFilter = ({
   onChangeCategoryId,
 }: RestaurantFilterProps) => {
   const [isModalPriceOpen, setIsModalPriceOpen] = React.useState(false);
-  const [restaurants, setRestaurants] = React.useState<RestaurantItem[] | null>(null);
+  const [category, setCategory] = React.useState<Category[]>([]);
+  const [fetchError, setfetchError] = React.useState(false);
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:5000/restaurantss")
-      .then((res) => setRestaurants(res.data))
-      .catch((err) => console.log(err.message));
+      .get("https://sekawan-restaurant.herokuapp.com/categories")
+      .then((res) => setCategory(res.data))
+      .catch((err) => setfetchError(err.message));
   }, []);
 
   return (
@@ -88,9 +89,13 @@ const RestaurantFilter = ({
             value={categoryId}
             onChange={(e) => onChangeCategoryId(e.target.value)}
           >
-            {restaurants?.map((resto) => (
-              <option value={resto.category.id}>{resto.category.name}</option>
-            ))}
+            <option value="">Category</option>
+
+            {fetchError ? (
+              <option value="">{fetchError}</option>
+            ) : (
+              category?.map((category) => <option value={category.id}>{category.name}</option>)
+            )}
           </select>
         </div>
       </div>
