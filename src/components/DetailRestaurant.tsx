@@ -12,7 +12,7 @@ const DetailRestaurant = () => {
 
   React.useEffect(() => {
     axios
-      .get(`http://localhost:5000/restaurants/${params.id}`)
+      .get(`https://sekawan-restaurant.herokuapp.com/restaurants/${params.id}`)
       .then((res) => setRestaurant(res.data))
       .catch((err) => setFetchError(err.message));
   }, [params.id]);
