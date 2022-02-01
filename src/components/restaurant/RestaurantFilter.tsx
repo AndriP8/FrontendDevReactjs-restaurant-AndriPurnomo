@@ -94,7 +94,11 @@ const RestaurantFilter = ({
             {fetchError ? (
               <option value="">{fetchError}</option>
             ) : (
-              category?.map((category) => <option value={category.id}>{category.name}</option>)
+              category?.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))
             )}
           </select>
         </div>
