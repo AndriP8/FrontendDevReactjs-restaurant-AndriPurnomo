@@ -13,6 +13,6 @@ npm install
 npm start
 # build for production
 npm build
-# run local server
+# run local data at localhost:5000
 npm run serve
 ```
